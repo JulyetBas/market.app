@@ -4,5 +4,5 @@ mobile_number VARCHAR(20), not null, ide_number varchar(15) null, adress TEXT(50
  created_at timestamptz not null default now(),update_at timestamptz not null default now(), deleted_at timestamptz null
 
 
-inser into users (firstname, lastname,mobile_number,email,password)
+inser into users (firstname, lastname,mobile_number,ide_number,email,password)
 values('Julieth','bastidas','3017903227','sparks24@gmail.com','123456');
