@@ -8,24 +8,25 @@
 </head>
 <body>
     <center><h1>Register</h1></center><br>
+    <form name="Register-form" action="signup.php" method ="post">
     <table border="1" align="center">
         <tr><td><label>Firstname:</label></td></tr>
-        <tr><td><input type="text" placeholder="Username"><br></td></tr>
+        <tr><td><input type="text" name="fname" placeholder="Username" required><br></td></tr>
         <tr><td><label></label>Lastname:</label></td></tr>
-        <tr><td><input type="text"><br></td></tr>
+        <tr><td><input type="text" name="lname" required><br></td></tr>
         <tr><td><label>Mobile number:</label></td></tr>
-        <tr><td><input type="text"><br></td></tr>
+        <tr><td><input type="text" name="mnumber"requiered><br></td></tr>
         <tr><td><label>Identification number:</label></td></tr>
-        <tr><td><input type="text"><br></td></tr>
+        <tr><td><input type="text" name="idnumber" required><br></td></tr>
         <tr><td><label>Email:</label></td></tr>
-        <tr><td><input type="email"><br></td></tr>
+        <tr><td><input type="email" name="email" required><br></td></tr>
         <tr><td><label>Password:</label></td></tr>
-        <tr><td><input type="password"><br></td></tr>
+        <tr><td><input type="password" name="passwd" required><br></td></tr>
         <tr><td align="center"><button>Register</button><br></td></tr> 
-        
-
+    
     </table>
     <!--<input type="submint" value="Register">-->
-    
+</form>
+    </body>
 </body>
 </html>

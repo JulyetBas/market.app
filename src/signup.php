@@ -11,6 +11,46 @@ $e_mail =$_POST['email'];
 $p_wd =$_POST['passwd'];
 
 $enc_pass = password_hash($p_wd,PASSWORD_DEFAULT);
+
+$check_email ="
+    SELECT 
+        email
+    FROM
+        users u
+    where
+    email='$e_mail' or ide_number='$idnumber'
+    LIMIT 1
+";
+$res= pg_query($conn, $check_email);
+if(pg_num_rows($res_check)>0){
+    echo"<script>alert('User already exist!!')</script>";+
+    header('refresh:0;url=signup.html');
+
+    }else{
+        // Stemp 3. create query to insert into
+    $query="
+    INSERT INTO users (
+    firstname,
+    lastname,
+    mobile_number,
+    ide_number,
+    email,
+    password
+    )VALUES (
+    '$f_name','$l_name','$m_number','$id_number','$e_mail','$enc_pass'
+    )";
+    // Stemp 4. execute query
+    $res= pg_query($conn, $query);
+    // Stemp 5. validate result
+    if($res){
+    //echo"User has been created successfull!!!";
+    echo"<script>alert('Sucess!!!! Go to login')</script>";+
+    header('refresh:0;url=signin.html');
+    }else{
+    echo "Something wrong!!";
+    }
+    }
+
 // Stemp 3. create query to insert into
 $query="
 INSERT INTO users (
@@ -27,7 +67,9 @@ password
 $res= pg_query($conn, $query);
 // Stemp 5. validate result
 if($res){
-echo"User has been created successfull!!!";
+//echo"User has been created successfull!!!";
+echo"<script>alert('Sucess!!!! Go to login')</script>";+
+header('refresh:0;url=signin.html');
 }else{
 echo "Something wrong!!";
 }
