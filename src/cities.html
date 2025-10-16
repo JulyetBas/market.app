@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ciudad</title>
+</head>
+<body>
+<center><h1>Cities</h1></center><br>
+    <form name="Cities-form" action="cities.php" method ="post">
+    <table border="1" align="center">
+        <tr><td><label>Name:</label></td></tr>
+        <tr><td><input type="text" name="name"  required><br></td></tr>
+        <tr><td><label></label>Abbrer:</label></td></tr>
+        <tr><td><input type="text" name="Abbrer" required><br></td></tr>
+        <tr><td><label>Code:</label></td></tr>
+        <tr><td><input type="text" name="code"requiered><br></td></tr>
+        <tr><td><label>Region:</label></td></tr>
+        <tr><td><select name="Region" required>
+            <option value="">-- Select a Region --</option>
+            <?php
+            require('../config/database.php');
+            $sql_regions = "SELECT id_region, region_name FROM regions ORDER BY region_name ASC";
+            $res_regions = pg_query($conn, $sql_regions);
+            while ($row = pg_fetch_assoc($res_regions)) {
+                echo "<option value='{$row['id_region']}'>{$row['region_name']}</option>";
+            }
+            ?>
+        </select>
+    </td></tr>
+       
+        <tr><td align="center"><button>Register</button><br></td></tr> 
+    
+    </table>
+    <!--<input type="submint" value="Register">-->
+</form>
+    
+</body>
+</html>

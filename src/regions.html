@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Regions</title>
+</head>
+<body>
+<center><h1>Regions</h1></center><br>
+    <form name="Regions-form" action="regions.php" method ="post">
+    <table border="1" align="center">
+        <tr><td><label>Name:</label></td></tr>
+        <tr><td><input type="text" name="name"  required><br></td></tr>
+        <tr><td><label></label>Abbrer:</label></td></tr>
+        <tr><td><input type="text" name="Abbrer" required><br></td></tr>
+        <tr><td><label>Code:</label></td></tr>
+        <tr><td><input type="text" name="code"requiered><br></td></tr>
+        <tr><td><label>country:</label></td></tr>
+        <tr><td><select name="country" required>
+            <option value="">-- Select a country --</option>
+            <?php
+            require('../config/database.php');
+            $sql_countries = "SELECT id_country, country_name FROM countries ORDER BY country_name ASC";
+            $res_countries = pg_query($conn, $sql_countries);
+            while ($row = pg_fetch_assoc($res_countries)) {
+                echo "<option value='{$row['id_country']}'>{$row['country_name']}</option>";
+            }
+            ?>
+        </select>
+    </td></tr>
+     
+    
+    </table>
+    <!--<input type="submint" value="Register">-->
+</form>
+
+
+
+    
+</body>
+</html>

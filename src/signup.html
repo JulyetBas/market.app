@@ -18,6 +18,34 @@
         <tr><td><input type="text" name="mnumber"requiered><br></td></tr>
         <tr><td><label>Identification number:</label></td></tr>
         <tr><td><input type="text" name="idnumber" required><br></td></tr>
+        <tr><td><label>ciudad de nacimiento :</label></td></tr>
+        <tr><td><tr><td>
+    <select name="cnacimiento" required>
+        <option value="">-- Seleccione una ciudad --</option>
+        <?php
+        require('../config/database.php');
+        $sql_cities = "SELECT id_city, city_name FROM cities ORDER BY city_name ASC";
+        $res_cities = pg_query($conn, $sql_cities);
+        while ($row = pg_fetch_assoc($res_cities)) {
+            echo "<option value='{$row['id_city']}'>{$row['city_name']}</option>";
+        }
+        ?>
+    </select>
+</td></tr>
+        <tr><td><label>ciudad de exp documento :</label></td></tr>
+        <tr><td>
+            <select name="cexpdocumento" required>
+        <option value="">-- Seleccione una ciudad --</option>
+        <?php
+        require('../config/database.php');
+        $sql_cities = "SELECT id_city, city_name FROM cities ORDER BY city_name ASC";
+        $res_cities = pg_query($conn, $sql_cities);
+        while ($row = pg_fetch_assoc($res_cities)) {
+            echo "<option value='{$row['id_city']}'>{$row['city_name']}</option>";
+        }
+        ?>
+    </select>
+</td></tr>
         <tr><td><label>Email:</label></td></tr>
         <tr><td><input type="email" name="email" required><br></td></tr>
         <tr><td><label>Password:</label></td></tr>
