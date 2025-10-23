@@ -24,26 +24,34 @@
 </tr>
 
 <?php
-sql_users="
-// ";
-?>
-
-
-<tr>
-<td> Jesus</td>
-<td>ksdlksd@gmail.com</td>
-<td>12345567</td>
-<td>32879382938</td>
-<td> Active</td>
+$sql_users="
+select u.firstname || ' ' || u.lastname as fullname, u.email, u.ide_number, u.mobile_number, case when u.status=true then 'Active'
+else 'inactive' end as status
+from 
+users u";
+$result=pg_query($conn_local, $sql_users);
+if(!$result){
+    die("ERROR:". pg_last_error());
+}
+while ($row=pg_fetch_assoc($result)){
+echo "<tr>
+<td> " . $row['fullname'] . "</td>
+<td>" . $row['email'] . "</td>
+<td>" . $row['ide_number'] . "</td>
+<td>" . $row['mobile_number'] . "</td>
+<td>" . $row['status'] . "</td>
 
 <td>
-<a href="#"><img src= "image/serach.png"  width="20"></a>
-<a href="#"> update</a>
-<a href="#"> delete </a>
+<a href='#'><img src= 'image/serach.png'  width='20'></a>
+<a href='#'> update</a>
+<a href='#'> delete </a>
 
 </td>
 
-</tr>
+</tr> ";
+
+}
+?>
 
 </table>
 </body>
