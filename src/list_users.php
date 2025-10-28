@@ -10,9 +10,16 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Marketapp - List users</title>
+ 
+ <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+
 </head>
 <body>
-    <table border="1" align="center">
+     <div class="container">
+    <table class="table">
+   
         <tr>
 <th> Fullname  </th>
 <th>Email</th>
@@ -25,7 +32,13 @@
 
 <?php
 $sql_users="
-select u.firstname || ' ' || u.lastname as fullname, u.email, u.ide_number, u.mobile_number, case when u.status=true then 'Active'
+select u.id as user_id, 
+u.firstname || ' ' || u.lastname as fullname, 
+u.email, 
+u.ide_number, 
+u.mobile_number, 
+case
+ when u.status=true then 'Active'
 else 'inactive' end as status
 from 
 users u";
@@ -34,7 +47,7 @@ if(!$result){
     die("ERROR:". pg_last_error());
 }
 while ($row=pg_fetch_assoc($result)){
-echo "<tr>
+echo "<tr class='success'>
 <td> " . $row['fullname'] . "</td>
 <td>" . $row['email'] . "</td>
 <td>" . $row['ide_number'] . "</td>
@@ -43,8 +56,9 @@ echo "<tr>
 
 <td>
 <a href='#'><img src= 'image/serach.png'  width='20'></a>
-<a href='#'> update</a>
-<a href='#'> delete </a>
+<a href='#'><img src='image/checked.png' width='20'></a>
+
+<a href=delete_users.php?userId=". $row['user_id']."'><img src='image/delete.png' width='20'></a>
 
 </td>
 
@@ -54,5 +68,6 @@ echo "<tr>
 ?>
 
 </table>
+</div>
 </body>
 </html>
