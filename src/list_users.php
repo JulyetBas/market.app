@@ -2,6 +2,11 @@
 
     // Stemp 1. Get database connection
     require ('../config/database.php');
+    
+    session_start();
+if(!isset($_SESSION('session_user_id'))){
+	header('refresh:0;url=error_403.html');
+}
 ?>
 
 <!DOCTYPE html>
@@ -58,7 +63,7 @@ echo "<tr class='success'>
 <a href='#'><img src= 'image/serach.png'  width='20'></a>
 <a href='#'><img src='image/checked.png' width='20'></a>
 
-<a href=delete_users.php?userId=". $row['user_id']."'><img src='image/delete.png' width='20'></a>
+<a href='delete_users.php?userId=". $row['user_id']."'><img src='image/delete.png' width='20'></a>
 
 </td>
 
