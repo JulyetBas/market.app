@@ -32,7 +32,7 @@ select
 ";
 //Stemp 4.  Execute query
 $res_check= pg_query($conn_local, $sql_check_user);
-$row=pg_fetch_assoc($res_check)
+$row=pg_fetch_assoc($res_check);
 $_SESSION('session_user_id')=$row ('id');
 $_SESSION('session_user_fullname')=$row ('fullname');
 if(pg_num_rows($res_check)>0){
