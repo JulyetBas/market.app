@@ -3,10 +3,10 @@
     // Stemp 1. Get database connection
     require ('../config/database.php');
     
-    session_start();
-if(!isset($_SESSION('session_user_id'))){
-	header('refresh:0;url=error_403.html');
-}
+   // session_start();
+//if(!isset($_SESSION('session_user_id'))){
+//	header('refresh:0;url=error_403.html');
+//}
 ?>
 
 <!DOCTYPE html>
@@ -31,6 +31,7 @@ if(!isset($_SESSION('session_user_id'))){
 <th>Ide.number</th>
 <th>Phone number</th>
 <th> Status</th>
+<th> foto</th>
 <th> Options</th>
 
 </tr>
@@ -44,7 +45,8 @@ u.ide_number,
 u.mobile_number, 
 case
  when u.status=true then 'Active'
-else 'inactive' end as status
+else 'inactive' end as status, 
+u.url_foto
 from 
 users u";
 $result=pg_query($conn_local, $sql_users);
@@ -58,6 +60,7 @@ echo "<tr class='success'>
 <td>" . $row['ide_number'] . "</td>
 <td>" . $row['mobile_number'] . "</td>
 <td>" . $row['status'] . "</td>
+<td align='center'><img src=" . $row['url_foto'] . " width='30' ></td>
 
 <td>
 <a href='#'><img src= 'image/serach.png'  width='20'></a>

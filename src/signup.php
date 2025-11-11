@@ -9,6 +9,7 @@
     $id_number =trim($_POST['idnumber']);
     $e_mail =trim($_POST['email']);
     $p_wd =trim($_POST['passwd']);
+    $url_foto="fotos/gama.jpg";
 
     //$enc_pass = password_hash($p_wd,PASSWORD_DEFAULT);
    $enc_pass = md5($p_wd); // md5 poco seguro
@@ -23,7 +24,7 @@
         LIMIT 1
     ";
 
-    $res_check = pg_query($conn_supa, $check_email);
+    $res_check = pg_query($conn_local, $check_email);
 
     if(pg_num_rows($res_check) > 0){
         echo"<script>alert('User already exist!!')</script>";+
@@ -37,9 +38,11 @@
                 mobile_number,
                 ide_number,
                 email,
-                password
+                password,
+                url_foto
+            
             )VALUES (
-                '$f_name','$l_name','$m_number','$id_number','$e_mail','$enc_pass'
+                '$f_name','$l_name','$m_number','$id_number','$e_mail','$enc_pass','$url_foto'
         )";
 
         // Step 4. execute query
