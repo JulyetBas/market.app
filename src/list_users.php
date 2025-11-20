@@ -64,7 +64,7 @@ echo "<tr class='success'>
 
 <td>
 <a href='#'><img src= 'image/serach.png'  width='20'></a>
-<a href='#'><img src='image/checked.png' width='20'></a>
+<a href='edit_user_form.php'><img src='image/checked.png' width='20'></a>
 
 <a href='delete_users.php?userId=". $row['user_id']."'><img src='image/delete.png' width='20'></a>
 
