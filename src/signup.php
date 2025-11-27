@@ -46,7 +46,7 @@
         )";
 
         // Step 4. execute query
-        $res= pg_query($conn_supa, $query);
+        $res= pg_query($conn_local, $query);
 
         // Stemp 5. validate result
         if($res){
